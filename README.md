@@ -4,6 +4,7 @@ A simple Ruby on Rails spike solution deployed to Google's App Engine Managed VM
 # Prerequisites
 
 - MySQL for local development.  You can install it directly or use it within a Docker container.
+- [Google Cloud SDK](https://cloud.google.com/sdk/).  
 
 # Creating the Ruby on Rails App Engine application
 
