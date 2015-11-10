@@ -4,6 +4,7 @@ A simple Ruby on Rails spike solution deployed to Google's App Engine Managed VM
 # Prerequisites
 
 - MySQL for local development.  You can install it directly or use it within a Docker container.
+- If using Docker on your local system, you will need to have [VirtualBox](https://www.virtualbox.org/wiki/Downloads) and the [Docker Toolbox](https://www.docker.com/docker-toolbox) installed.  Looks like Docker Toolbox brings VirtualBox along, so Docker Toolbox is really the only install for Docker support.
 - [Google Cloud SDK](https://cloud.google.com/sdk/).  
 
 # Creating the Ruby on Rails App Engine application
@@ -16,6 +17,8 @@ A simple Ruby on Rails spike solution deployed to Google's App Engine Managed VM
 
 # Configure the local MySQL database
 
+We will be using Cloud SQL in the Google App Engine Managed VMs environment, which is basically a hosted MySQL system.  Thus, we will need MySQL in our local development environment for development and testing purposes.
+
 
 # Using devise
 [Devise](https://github.com/plataformatec/devise) is a Ruby gem for flexible authentication solution for Rails based on Warden.  It’s very popular with the Rails crowd and we’re going to use it in this spike solution application. Check out their [documentation](http://devise.plataformatec.com.br/) to see all the great support devise gives you for managing authentication and accounts.
@@ -24,7 +27,12 @@ A simple Ruby on Rails spike solution deployed to Google's App Engine Managed VM
 1. Run `bundle install` to pull down the gem dependency.
 1. Run `rails generate devise:install` to install the devise initializer configuration into the Rails application.
 1. Run `rails generate devise User` to configure the **User** model for management under devise.
-1. Add the following line to the **config/environments/development.rb** file: `config.action_mailer.default_url_options = { host: ‘localhost’, port: 3000 }`
+1. Add the following line to the **config/environments/development.rb** file: 
+
+        config.action_mailer.default_url_options = { 
+              host: ‘localhost’, 
+              port: 3000 
+        }
 1. Migrate the database to get the new **users** table created in the database: `bundle exec rake db:migrate` 
     
 
