@@ -30,5 +30,30 @@ A simple Ruby on Rails spike solution deployed to Google's App Engine Managed VM
 
 # Using the puma web server
 
+[Puma](https://github.com/puma/puma) is a simple, fast, threaded, and highly concurrent HTTP 1.1 server for Ruby/Rack applications. 
+
+1. Add the following line to the *Gemfile*: `gem ‘puma’`
+1. Run `bundle install` to install the gem into your Rails app environment.
+1. Create a new file, **config/puma.rb**, and paste the following source code into the new file and save the file: 
+
+        workers Integer(ENV.fetch(‘WEB_CONCURRENCY’, 1))
+        threads Integer(ENV.fetch(‘MIN_THREADS’, 2)),
+                Integer(ENV.fetch(‘MAX_THREADS’, 2))
+
+        preload_app!
+
+        rackup DefaultRackup
+        port ENV.fetch(‘PORT’, 3000)
+        environment ENV.fetch(‘RACK_ENV’, ‘development’)
+
+        on_worker_boot do
+             # Force reconnection for each worker
+             ActiveRecord::Base.establish_connection
+        end
+
+
+1. Start your Rails server and ensure that Puma starts up: `rails server`
+
+
 
 
