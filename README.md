@@ -63,5 +63,9 @@ We will be using Cloud SQL in the Google App Engine Managed VMs environment, whi
 1. Start your Rails server and ensure that Puma starts up: `rails server`
 
 
+# Other notables
+
+- Using [Materialize Sass for Rails Asset Pipeline](https://github.com/mkhairi/materialize-sass).  The Materialize front-end framework can be found [here](http://www.materialup.com/posts/materialize-tool/responsive).
+
 
 
